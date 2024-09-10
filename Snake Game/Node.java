@@ -1,19 +1,17 @@
-package snakeGame;
-
-public class Node {
+class Node {
     private int row = 0;
-    private int column = 0;
+    private int col = 0;
 
-    Node(int row, int column) {
+    Node(int row, int col) {
         this.row = row;
-        this.column = column;
-    }
-
-    public int getColumn() {
-        return column;
+        this.col = col;
     }
 
     public int getRow() {
         return row;
+    }
+
+    public int getColumn() {
+        return col;
     }
 }
