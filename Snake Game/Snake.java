@@ -1,103 +1,62 @@
-package snakeGame;
-
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-// CODE UPDATED. CHECK MAIN CLASS COMMENT FOR MORE DETAILS
 public class Snake {
     private char[][] snakeBoard = null;
-    private Queue<Node> queue = new LinkedList<Node>();
-    private Queue<Node> food = new LinkedList<Node>();  // to store the food positions
+    Queue<Node> queue = new LinkedList<Node>();
 
     Snake(int row, int col) {
-        snakeBoard = new char[row][col];
-        queue.add(new Node(0,0));
-        /* Old code where we place all the food at the same time
+        this.snakeBoard = new char[row][col];
+        
+        // Initialize the board with 'O'
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                snakeBoard[i][j] = 'O';
+            }
+        }
+        
+        // Place obstacles ('X') on the board
+        this.queue.add(new Node(0, 0));  // Snake starting position
         this.snakeBoard[1][0] = 'X';
         this.snakeBoard[2][2] = 'X';
         this.snakeBoard[3][4] = 'X';
-        this.snakeBoard[5][2] = 'X';  */
-
-        // Positions of food (X) to display
-        food.add(new Node(1,0));
-        food.add(new Node(2,2));
-        food.add(new Node(3,4));
-        food.add(new Node(5,2));
-        food.add(new Node(4,5));
-        // Display first food (X)
-        displayFood(food.poll());
+        this.snakeBoard[5][2] = 'X';
     }
 
     public void snakeMove(int row, int col) {
-        if(row >= 0 && row < snakeBoard.length && col >=0 && col < snakeBoard.length) {
-            /* Snake bites itself (Code repositioned)
-            if(snakeBoard[row][col] == '.') {
-                System.out.println("Game Over!!!");
+        if (row >= 0 && row < snakeBoard.length && col >= 0 && col < snakeBoard[0].length) {
+            if (snakeBoard[row][col] == '.') {
+                System.out.println("Game Over");
                 System.exit(0);
-            } */
+            }
             queue.add(new Node(row, col));
-            // Remove the tail
-            if(snakeBoard[row][col] != 'X') {
+            if (snakeBoard[row][col] != 'X') {
                 Node node = queue.poll();
                 int r = node.getRow();
                 int c = node.getColumn();
-                snakeBoard[r][c] = '\0';
+                snakeBoard[r][c] = 'O';  // Reset the old position to 'O'
             }
+            snakeBoard[row][col] = '.';  // Mark the snake's current position
+            
+            printSnake();
+            System.out.print("Enter a direction (u/d/l/r): ");
+            Scanner s = new Scanner(System.in);
+            char direction = s.next().charAt(0);
 
-            // if current position contains food (X), display next food
-            if(snakeBoard[row][col] == 'X') {
-                // If there is no food remaining to display. Game over
-                if(food.isEmpty()) {
-                    moveForwardAndPrint(row, col);
-                    System.out.println("Game Over!!!");
-                    System.exit(0);
-                }
-                displayFood(food.poll());
-            }
-
-            // Snake bites itself
-            if(snakeBoard[row][col] == '.') {
-                System.out.println("Game Over!!!");
-                System.exit(0);
-            }
-            // Placing '.' and printing the snakeBoard combined in a single method
-            moveForwardAndPrint(row, col);
-
-            if(!queue.isEmpty()) {
-                System.out.print("Enter a position : ");
-                Scanner s = new Scanner(System.in);
-                char direction = s.next().charAt(0);
-
-                if (direction == 'U') {
-                    snakeMove(--row, col);
-                }
-                if (direction == 'D') {
-                    snakeMove(++row, col);
-                }
-                if (direction == 'R') {
-                    snakeMove(row, ++col);
-                }
-                if (direction == 'L') {
-                    snakeMove(row, --col);
-                }
+            if (direction == 'u') {
+                snakeMove(--row, col);
+            } else if (direction == 'd') {
+                snakeMove(++row, col);
+            } else if (direction == 'r') {
+                snakeMove(row, ++col);
+            } else if (direction == 'l') {
+                snakeMove(row, --col);
             }
         } else {
-            System.out.println("Invalid move");
+            System.out.println("Invalid Move");
             System.exit(0);
         }
-    }
-
-    // Displays new food in appropriate position
-    public void displayFood(Node node) {
-            int r = node.getRow();
-            int c = node.getColumn();
-            snakeBoard[r][c] = 'X';
-    }
-
-    public void moveForwardAndPrint(int row, int col) {
-        snakeBoard[row][col] = '.';
-        printSnake();
     }
 
     public void printSnake() {
