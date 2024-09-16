@@ -1,3 +1,77 @@
+/*
+Current Board:
+   0 1 2 3 4 
+0 | ? ? ? ? ? 
+1 | ? ? ? ? ? 
+2 | ? ? ? ? ? 
+3 | ? ? ? ? ? 
+4 | ? ? ? ? ? 
+Flags remaining: 5
+
+Enter your move (row col action):
+Action: 0 = Open cell, 1 = Flag cell
+Row: 3
+Column: 3
+Action (0=Open, 1=Flag): 0
+
+Current Board:
+   0 1 2 3 4
+0 | ? ? ? ? ?
+1 | ? ? ? ? ?
+2 | ? ? ? ? ?
+3 | ? ? ? 1 ?
+4 | ? ? ? ? ? 
+Flags remaining: 5
+
+Enter your move (row col action):
+Action: 0 = Open cell, 1 = Flag cell
+Row: 4
+Column: 4
+Action (0=Open, 1=Flag): 0
+
+Current Board:
+   0 1 2 3 4
+0 | ? ? ? ? ?
+1 | ? ? ? ? ?
+2 | ? ? ? ? ?
+3 | ? ? ? 1 ?
+4 | ? ? ? ? 1
+Flags remaining: 5
+
+Enter your move (row col action):
+Action: 0 = Open cell, 1 = Flag cell
+Row: 2
+Column: 2
+Action (0=Open, 1=Flag): 0
+
+Current Board:
+   0 1 2 3 4
+0 | ? ? ? ? ?
+1 | ? 2 1 1 ?
+2 | ? 1   1 ?
+3 | ? 2   1 ? 
+4 | ? 1   1 1
+Flags remaining: 5
+
+Enter your move (row col action):
+Action: 0 = Open cell, 1 = Flag cell
+Row: 2
+Column: 0
+Action (0=Open, 1=Flag): 0
+
+Minefield Layout:
+   0 1 2 3 4
+0 | M 1 1 M 1
+1 | 2 2 1 1 1
+2 | M 1   1 1
+3 | 2 2   1 M
+4 | M 1   1 1
+Game Over! You hit a mine.
+
+
+
+
+*/
 
 import java.util.Random;
 import java.util.Scanner;
@@ -166,7 +240,6 @@ public class MineSweeperGame {
         MineSweeper game = new MineSweeper();
         boolean isPlaying = true;
 
-        System.out.println("Welcome to Minesweeper!");
         game.displayBoard();
 
         while (isPlaying) {
@@ -190,6 +263,6 @@ public class MineSweeperGame {
             }
         }
 
-        scanner.close();
+      
     }
 }
