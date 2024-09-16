@@ -1,3 +1,19 @@
+/*
+TO print calendar of the given month,we have to find the starting day of the month , to find starting day of month,we have to find the day of the given date.
+For all these ,R.S.Agarwall method of finding the number odd of days and modulo of that gives the day of the given date.
+From that we can print the calendar.
+
+Odd days= no.of day more than complete week
+ the calculateOddDays method following lam include aavum:
+
+The number of odd days from previous years.
+The number of days in each month up to the month before the target month.
+The days of the current month to get the total odd days.
+By taking modulo 7 of the total odd days, we can get  the result to the day of the week.
+
+
+
+*/
 import java.util.Scanner;
 
 public class Calendar {
@@ -20,7 +36,7 @@ public class Calendar {
     public static int calculateOddDays(int year, int month, int day) {
         int oddDays = 0;
 
-      // I'm specifying here from 1900 we can custom ti by rewriting with our wanted year
+      // I'm specifying here from 1900 we can custom it by rewriting with year we wanted to start from or behind this year
         for (int y = 1900; y < year; y++) {
             oddDays += isLeapYear(y) ? 2 : 1;
         }
