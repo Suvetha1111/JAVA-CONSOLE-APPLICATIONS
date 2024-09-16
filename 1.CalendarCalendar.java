@@ -11,6 +11,25 @@ The number of days in each month up to the month before the target month.
 The days of the current month to get the total odd days.
 By taking modulo 7 of the total odd days, we can get  the result to the day of the week.
 
+input:
+Enter Year : 2003
+Enter Month : 11
+Enter Day : 11
+
+output:
+The day of the week is: Tue
+
+========================
+         11/2003
+
+========================
+SUN MON TUE WED THU FRI SAT
+                           1
+   2   3   4   5   6   7   8
+   9  10  11  12  13  14  15
+  16  17  18  19  20  21  22
+  23  24  25  26  27  28  29
+  30
 
 
 */
