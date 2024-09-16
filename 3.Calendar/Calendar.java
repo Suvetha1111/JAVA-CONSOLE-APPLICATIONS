@@ -2,12 +2,11 @@ import java.util.Scanner;
 
 public class Calendar {
 
-    // Check if a year is a leap year
+
     public static boolean isLeapYear(int year) {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 
-    // Get number of days in a month
     public static int get_days_in_month(int month, int year) {
         int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         if (month == 2 && isLeapYear(year)) {
@@ -17,11 +16,11 @@ public class Calendar {
         }
     }
 
-    // Calculate number of odd days from 1900 to the given year
+ 
     public static int calculateOddDays(int year, int month, int day) {
         int oddDays = 0;
 
-        // Count odd days for each year from 1900 to year-1
+      // I'm specifying here from 1900 we can custom ti by rewriting with our wanted year
         for (int y = 1900; y < year; y++) {
             oddDays += isLeapYear(y) ? 2 : 1;
         }
@@ -37,7 +36,6 @@ public class Calendar {
         return oddDays % 7;
     }
 
-    // Get the day of the week for the given date
     public static String getDayOfWeek(int year, int month, int day) {
         int oddDays = calculateOddDays(year, month, day);
         String[] daysOfWeek = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
@@ -51,14 +49,13 @@ public class Calendar {
         System.out.println("\n========================");
         System.out.println("SUN MON TUE WED THU FRI SAT");
 
-        int startingDay = calculateOddDays(year, month, 1); // Get the starting day for the 1st of the month
+        int startingDay = calculateOddDays(year, month, 1); 
 
-        // Print leading spaces for the first week
+       
         for (int i = 0; i < startingDay; i++) {
-            System.out.print("    ");  // Four spaces for alignment
+            System.out.print("    ");  
         }
 
-        // Print days of the month
         for (int day = 1; day <= daysInMonth; day++) {
             System.out.print(String.format("%4d", day));
             startingDay++;
