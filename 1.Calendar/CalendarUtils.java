@@ -34,7 +34,7 @@ SUN MON TUE WED THU FRI SAT
 
 */
 
-mport java.util.Scanner;
+import java.util.Scanner;
 class CalendarUtils {
 
     // Display calendar for a given month and year
